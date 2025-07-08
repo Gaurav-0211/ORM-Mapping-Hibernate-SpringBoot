@@ -1,10 +1,10 @@
 package org.example.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +19,9 @@ public class Student {
     private String studentName;
     private String about;
 
-    @OneToOne(mappedBy = "student")
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
     private Laptop laptop;
+
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+    private List<Address> addressList = new ArrayList<>();
 }
